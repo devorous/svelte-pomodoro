@@ -30,7 +30,7 @@ function start_timer() {
                 type = 'long';
             }
         }
-    });
+    }, 1000);
 }
 
     function pause_timer(){
