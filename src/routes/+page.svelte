@@ -1,7 +1,6 @@
 <script lang="ts">
     import Timer from '$lib/components/Timer.svelte';
     import Controls from '$lib/components/Controls.svelte';
-
     let time = $state(1200);
     let type = $state('long');
     let count = 0;
@@ -49,5 +48,12 @@ function start_timer() {
 
 
 <style>
-
+:global(body){
+    box-sizing: border-box;
+    box-shadow: inset 0 0 0 2px #3b3d3e; 
+    background-color: #00000000;
+    overflow:hidden;
+    margin: 0; /* Ensure no default margin pushes the bar */
+}
 </style>
+
