@@ -10,6 +10,7 @@
 
 <style>
     div{
+        user-select: none;
         font-size:clamp(3rem, 20vmin, 6rem);
     }
     [data-type="short"] {

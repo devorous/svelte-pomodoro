@@ -8,6 +8,7 @@
 
 <style>
     button{
+        user-select: none;
         background-color: #333;
         border: 1px solid black;
         border-radius: 5px;
