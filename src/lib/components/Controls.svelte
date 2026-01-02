@@ -1,9 +1,12 @@
 <script lang="ts">
-    let { start, pause } = $props();
+    let { start, pause, isPaused } = $props();
 </script>
 <div>
-    <button onclick={start}>Start</button>
-    <button onclick= {pause}>Pause</button>
+    {#if isPaused}
+        <button onclick= {pause}>Pause</button>
+    {:else}
+        <button onclick={start}>Start</button>
+    {/if}
 </div>
 
 <style>

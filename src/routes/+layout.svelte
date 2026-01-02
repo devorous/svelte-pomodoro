@@ -2,7 +2,7 @@
 	import '../app.css';
 	import favicon from '$lib/assets/favicon.svg';
 	import Topbar from '$lib/components/Topbar.svelte';
-	
+
 	let { children } = $props();
 </script>
 
@@ -11,7 +11,7 @@
 </svelte:head>
 
 
-<Topbar />
+<Topbar title={'Pomodoro Timer'}/>
 <main>
 	{@render children()}
 </main>

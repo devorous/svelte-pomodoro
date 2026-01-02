@@ -12,6 +12,8 @@
     div{
         user-select: none;
         font-size:clamp(3rem, 20vmin, 6rem);
+        height:40vmin;
+        margin-bottom: 0;
     }
     [data-type="short"] {
         color: green;
