@@ -2,7 +2,7 @@
     import { onMount } from  'svelte';
     import Timer from '$lib/components/Timer.svelte';
     import Controls from '$lib/components/Controls.svelte';
-    let time = $state(5);
+    let time = $state(1200);
     let type = $state('long');
     let isPaused = $state(false);
     let isFlashing = $state(false);
@@ -10,17 +10,6 @@
     let count = 0;
     let interval: ReturnType<typeof setInterval> | undefined;
 
-    onMount(() => {
-        $effect(() => {
-            if (isFlashing) {
-                document.body.classList.add('flash-active');
-                document.body.style.backgroundColor = flashColour; 
-            } else {
-                document.body.classList.remove('flash-active');
-                document.body.style.backgroundColor = '';
-            }
-        });
-    });
 
     function triggerFlash() {
         isFlashing = true;
@@ -68,25 +57,25 @@
     
 </script>
 
+<div class="app">
+     <div
+      class="flash-overlay"
+      class:active={isFlashing}
+      style:background-color={flashColour}
+  ></div>
+    <Timer {time} {type} />
 
-<Timer {time} {type} />
+    <p class:invisible={isPaused}>Paused</p>
 
-<p class:invisible={isPaused}>Paused</p>
+    <Controls start={start_timer} pause={pause_timer} {isPaused} />
+</div>
 
-<Controls start={start_timer} pause={pause_timer} {isPaused} />
 
 
 
 <style>
-    :global(body.flash-active) {
-        animation: flash 1s ease-in-out;
-    }
-    @keyframes flash {
-        0% { opacity: 1; }
-        25% { opacity: 0.3; }
-        50% { opacity: 1; }
-        75% { opacity: 0.3; }
-        100% { opacity: 1; }
+    :global(body){
+        overflow:hidden;
     }
     p{
         color: red;
@@ -94,5 +83,25 @@
     .invisible{
         visibility: hidden;
     }
+     .flash-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      opacity: 0;
+      z-index: 9999;
+  }
+   .flash-overlay.active {
+      animation: flash-pulse 1s ease-in-out;
+  }
+  @keyframes flash-pulse {
+      0% { opacity: 0.8; }
+      25% { opacity: 0.2; }
+      50% { opacity: 0.8; }
+      75% { opacity: 0.2; }
+      100% { opacity: 0; }
+  }
 </style>
 
