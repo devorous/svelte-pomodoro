@@ -2,6 +2,7 @@
     import { onMount } from  'svelte';
     import Timer from '$lib/components/Timer.svelte';
     import Controls from '$lib/components/Controls.svelte';
+    let sound_effect = new Audio('../src/lib/assets/effect.mp3');
     let time = $state(1200);
     let type = $state('long');
     let isPaused = $state(false);
@@ -25,6 +26,7 @@
 
             if (time === 0) {
                 triggerFlash();
+                sound_effect.play();
                 if (type === 'long') {
                     count += 1;
 
